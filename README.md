@@ -9,7 +9,7 @@ A small password generator
 </code>
 
 <p>Create a strong password with optional options</p>
-
+<p></p>
 <pre>
 <code>
     /U Include upper case characters A-Z
