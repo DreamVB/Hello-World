@@ -12,7 +12,6 @@ A small password generator
 
 <pre>
 <code>
-  <h4>Options</h4>
     /U Include upper case characters A-Z
     /L Include lower case characters a-z
     /D Include digits 0-9
