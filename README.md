@@ -7,3 +7,11 @@ A small password generator
 <code>
   ./bpwsgen 8 1 /u /l /d
 </code>
+
+<p>Create a strong password with optional options</p>
+
+<code>
+  <p>Options</p>
+  
+  <p>/U Include upper case characters A-Z</p>
+</code>
