@@ -11,10 +11,12 @@ A small password generator
 <p>Create a strong password with optional options</p>
 
 <code>
-  Options
-    /U Include upper case characters A-Z
-    /L Include lower case characters a-z
-    /D Include digits 0-9
-    /S Include special characters
-    /H Include hexadecimal characters
+  <h4>Options</h4>
+  <ul>
+    <li>/U Include upper case characters A-Z</li>
+    <li>/L Include lower case characters a-z</li>
+    <li>/D Include digits 0-9</li>
+    <li>/S Include special characters</li>
+    <li>/H Include hexadecimal characters</li>
+  </ul>
 </code>
