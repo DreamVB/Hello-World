@@ -1,2 +1,2 @@
-# Strong Paddword Generator
+# Strong Password Generator
 A small password generator
