@@ -1,5 +1,14 @@
 # Strong Password Generator
 A small password generator
+
+<h2>Building the program</h2>
+
+<h3>Running from the command line in linux</h3>
+
+<code>
+  gcc -o bpwsgen bpwsgen.c
+</code>
+
 <h2>Usage</h2>
 
 <h3>Running from the command line</h3>
