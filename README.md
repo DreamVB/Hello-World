@@ -1,5 +1,5 @@
 # Strong Password Generator
-A small password generator
+A small password generator for createing single or lists of random passwords.
 
 <h2>Building the program</h2>
 
