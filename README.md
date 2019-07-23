@@ -8,10 +8,11 @@ A small password generator
   ./bpwsgen 8 1 /u /l /d
 </code>
 
-<p>Create a strong password with optional options</p>
-<p></p>
+<h4>Create a strong password with optional options</h4>
+
 <pre>
 <code>
+    <b>Options::</b>
     /U Include upper case characters A-Z
     /L Include lower case characters a-z
     /D Include digits 0-9
