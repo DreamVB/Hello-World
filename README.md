@@ -1,9 +1,9 @@
 # Strong Password Generator
-A small password generator for createing single or lists of random passwords.
+A small password generator for creating single or lists of random passwords.
 
 <h2>Building the program</h2>
 
-<h3>Running from the command line in linux</h3>
+<h3>Running from the command line in Linux</h3>
 
 <code>
   gcc -o bpwsgen bpwsgen.c
