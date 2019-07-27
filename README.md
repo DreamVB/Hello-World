@@ -5,12 +5,14 @@ Bpwsgen is a program that enables you to create secure passwords or lists of pas
 
 <h3>Running from the command line in Linux</h3>
 
+<pre>
 <code>
   Download the project and unzip it
   Open bash in the uniped folder.
   <b>Type</b>
   Make
 </code>
+</pre>
 
 <h2>Usage</h2>
 
