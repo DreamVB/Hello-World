@@ -27,5 +27,6 @@ A small password generator for creating single or lists of random passwords.
     /D Include digits 0-9
     /S Include special characters
     /H Include hexadecimal characters
+    /V Remove any vowels from the output generated password.
 </code
 </pre>
