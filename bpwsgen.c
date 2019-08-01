@@ -1,8 +1,6 @@
 /*
     Strong Password Generator
     by DreamVB
-
-    This file may be distributed under the terms of the GNU Public License.
 */
 
 #include <stdio.h>
@@ -13,11 +11,44 @@
 #define DEFAULT_PWS_LENGTH 8
 #define DEFAULT_PWS_COUNT 1
 #define MAX_MASK_LEN 256
-#define MAX_PWS_LEN 255
+#define MAX_PWS_LEN 256
+#define MAX_FLAGS 10
 #define MAX_PASSWORDS 4000
 
 #define TRUE 1
 #define FALSE 0
+
+//Password mask types.
+char *pLowcase = "abcdefghijklmnopqrstuvwxyz";
+char *pUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+char *pDigits = "0123456789";
+char *pSymbol = "!\"#$%&'()*+,-./:;<=>?@[]^_{|}~";
+char *pHex = "ABCDEF0123456789";
+
+//Holds the option types of passwords to generate.
+int i_flags = 0;
+char flags[MAX_FLAGS];
+//Holds the generated password.
+char pws[MAX_PWS_LEN];
+
+int flag_exsits(char c){
+    //Look in the flags array if a char is found
+    int x = 0;
+    int Found = FALSE;
+
+    while(x < i_flags){
+        //Check if c is in flags
+        if(c == flags[x]){
+            //Yes it is found
+            Found = TRUE;
+            //Here we exit the loop
+            break;
+        }
+        //INC counter
+        x++;
+    }
+    return Found;
+}
 
 int is_vowel(char c){
     char ch = toupper(c);
@@ -31,11 +62,7 @@ int is_vowel(char c){
 
 int main(int argc, char **argv)
 {
-    char *pLowcase = "abcdefghijklmnopqrstuvwxyz";
-    char *pUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    char *pDigits = "0123456789";
-    char *pSymbol = "!\"#$%&'()*+,-./:;<=>?@[]^_{|}~";
-    char *pHex = "ABCDEF0123456789";
+    char flag = '\0';
     char pTempMask[MAX_MASK_LEN];
     char pMask[MAX_MASK_LEN];
 
@@ -53,9 +80,9 @@ int main(int argc, char **argv)
 
     if(argc < 3){
         printf("-------------------------------------------------------------------------------\n");
-        printf("bpwsgen ::       Strong Password Generator Version 1.2\n");
+        printf("bpwsgen ::       Strong Password Generator Version 1.3\n");
         printf("-------------------------------------------------------------------------------\n");
-        printf("\nSimple Usage :: bpwsgen length count  [OPTIONS]\n");
+        printf("\nSimple Usage :: bpwsgen length count  /[OPTIONS]\n");
         printf("\n    Length ::  Length of the password to create.\n");
         printf("    Count  ::  Number of passwords to create.\n");
         printf("\n    Options ::\n\n");
@@ -99,35 +126,51 @@ int main(int argc, char **argv)
         strcat(pTempMask,pLowcase);
         strcat(pTempMask,pDigits);
     }
+
     //Create password mask
     while(x < argc){
-        switch(argv[x][1]){
+        //Get char from argv
+        flag = toupper(argv[x][1]);
+        //Check if flag is already in the flags array
+        if(flag_exsits(flag) == FALSE && (isalpha(flag))){
+            //Store flag
+            flags[i_flags] = flag;
+            //INC flag counter
+            i_flags++;
+        }
+        //INC counter
+        x++;
+    }
+
+    //Reset counter
+    i = 0;
+
+    //Process flags
+    while(i < i_flags){
+        //Get flag
+        flag = flags[i];
+        //Process flag
+        switch(flag){
         case 'U':
-        case 'u':
             strcat(pTempMask,pUppercase);
             break;
         case 'L':
-        case 'l':
             strcat(pTempMask,pLowcase);
             break;
         case 'D':
-        case 'd':
             strcat(pTempMask,pDigits);
             break;
         case 'S':
-        case 's':
             strcat(pTempMask,pSymbol);
             break;
         case 'H':
-        case 'h':
             strcat(pTempMask,pHex);
             break;
         case 'V':
-        case 'v':
             rm_vowels = TRUE;
             break;
         }
-        x++;
+        i++;
     }
 
     i = 0;
@@ -149,7 +192,7 @@ int main(int argc, char **argv)
         }
         i++;
     }
-
+    //Add ending for password mask.
     pMask[pMaskLen] = '\0';
 
     x = 0;
@@ -162,14 +205,20 @@ int main(int argc, char **argv)
             rnd = rand() % strlen(pMask);
             //Get random char from pTempMask
             char c = pMask[rnd];
-            //Print password.
-            printf("%c",c);
+            //Build password
+            pws[j] = c;
         }
-        printf("\n");
+        //Add ending for password.
+        pws[j] = '\0';
+        //Print random password.
+        printf("%s\n",pws);
+        //INC counter
         i++;
     }
     //Clear arrays.
     memset(pTempMask,0,sizeof(pTempMask));
     memset(pMask,0,sizeof(pMask));
+    memset(flags,0,sizeof(flags));
+    memset(pws,0,sizeof(pws));
     return 0;
 }
